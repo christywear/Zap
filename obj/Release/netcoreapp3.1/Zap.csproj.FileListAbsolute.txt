@@ -1,0 +1,14 @@
+D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.exe
+D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.deps.json
+D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.runtimeconfig.json
+D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.runtimeconfig.dev.json
+D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.dll
+D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.pdb
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.Form1.resources
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.csproj.GenerateResource.cache
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.AssemblyInfoInputs.cache
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.AssemblyInfo.cs
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.csproj.CoreCompileInputs.cache
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.dll
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.pdb
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.genruntimeconfig.cache
