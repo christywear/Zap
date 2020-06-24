@@ -8,66 +8,27 @@ namespace Zap.Logic
 {
     public class LevelSelectLogic : Form1
     {
-        Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
-        private int posMoveAmount = 51;
-        private int currentSelectedPos = 46;
-        private int levelSelected = 1;
-        private bool selected = false;
-        public int PosMoveAmount
-        {
-            get
-            {
-                return posMoveAmount;
-            }
-        }
 
-        public bool Selected
-        {
-            get
-            {
-                return selected;
-            }
-            set
-            {
-                selected = value;
-            }
-        }
-        public int CurrentSelectedPos
-        {
-            get
-            {
-                return currentSelectedPos;
-            }
-        }
-
-        public int LevelSelected
-        {
-            get
-            {
-                return levelSelected;
-            }
-        }
-       
         public void InterateDrawOnLevelLeft()
         {
-            currentSelectedPos -= posMoveAmount;
-            if (currentSelectedPos < 10)
-            { currentSelectedPos = 250; }
-            levelSelected--;
-            if (levelSelected <= 0)
-            { levelSelected = 5; currentSelectedPos = 250; }
-            LS.LoadLevel();
+            DS.CurrentSelectedPos -= DS.PosMoveAmount;
+            if (DS.CurrentSelectedPos < 10)
+            { DS.CurrentSelectedPos = 250; }
+            DS.LevelSelected--;
+            if (DS.LevelSelected <= 0)
+            { DS.LevelSelected = 5; DS.CurrentSelectedPos = 250; }
+            
         }
 
         public void InterateDrawOnLevelRight()
         {
-            currentSelectedPos += posMoveAmount;
-            if (currentSelectedPos > 250)
-            { currentSelectedPos = 46; }
-            levelSelected++;
-            if (levelSelected > 5)
-            { levelSelected = 1; currentSelectedPos = 46; }
-            LS.LoadLevel();
+            DS.CurrentSelectedPos += DS.PosMoveAmount;
+            if (DS.CurrentSelectedPos > 250)
+            { DS.CurrentSelectedPos = 46; }
+            DS.LevelSelected++;
+            if (DS.LevelSelected > 5)
+            { DS.LevelSelected = 1; DS.CurrentSelectedPos = 46; }
+            
         }
     }
 }

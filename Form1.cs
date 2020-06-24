@@ -16,6 +16,7 @@ namespace Zap
 {
     public partial class Form1 : Form
     {
+        private Data.DataStorage ds = new Data.DataStorage();
 
         public Form1()
         {
@@ -23,24 +24,51 @@ namespace Zap
             InitializeComponent();
             //Thread play = new Thread(new ThreadStart(GameStartLoader));
             //play.Start();
-
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
-            LS.LoadLevel();
+            pictureBox1.Paint += new PaintEventHandler(LS.DrawLineLeftOrRight);
 
 
         }
-       
-        private void pictureBox1_KeyDown(object sender, KeyEventArgs e)
+
+        public Data.DataStorage DS { get { return ds; } set { ds = value; } }
+
+        private void PictureBox1_KeyDown(object sender, KeyEventArgs e)
         {
             Logic.InputReactor IR = new Logic.InputReactor();
-            IR.pictureBox1_KeyDown(sender, e);
-
+            string drawthis = IR.PictureBox1_KeyDown(sender, e);
+            DrawThis(drawthis);
         }
 
-
+        private void DrawThis(string drawing)
+        {
+           
+           
+            switch(drawing)
+            {
+                case "LS.GoLeft":
+                case "LS.GoRight":
+                    Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
+                    pictureBox1.Paint += new PaintEventHandler(LS.Clearnumline);
+                    pictureBox1.Paint += new PaintEventHandler(LS.DrawLineLeftOrRight);
+                    pictureBox1.Invalidate();
+                    break;
+                /*case "GUI.LoadPicture":
+                    Graphiz.Gui GUI = new Graphiz.Gui();
+                    pictureBox1.Paint += new PaintEventHandler(GUI.PictureboxStuff);
+                    pictureBox1.Invalidate();
+                    break;*/
+                case "Invalid":
+                    pictureBox1.Invalidate();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

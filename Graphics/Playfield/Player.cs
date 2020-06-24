@@ -9,7 +9,7 @@ namespace Zap.Graphiz
 {
     public class Player : Form1
     {
-        public void PlayerGeneric(Point point, object sender, PaintEventArgs e)
+        public void PlayerGeneric(Point point, PaintEventArgs e)
         {
 
             Size rectangleSize = new Size(20, 20);

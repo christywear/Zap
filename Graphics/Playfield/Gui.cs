@@ -11,25 +11,9 @@ namespace Zap.Graphiz
     public class Gui : Form1
     {
         
-        private int crashes_left = 5;
-
-        public int CrashesLeft
-        {
-            get{return crashes_left;}
-            set { crashes_left = value; }
-        }
 
         public void PictureboxStuff(object sender, PaintEventArgs e)
         {
-            int skilllevel = 0;
-            int score = 0;
-            int crashes_left = 5;
-            //Graphics.LevelSelect.LevelSelect LS = new Graphics.LevelSelect.LevelSelect();
-            //Logic.LevelSelect.LevelSelectLogic LSL = new Logic.LevelSelect.LevelSelectLogic();
-            // Dock the PictureBox to the form and set its background to white.
-
-            
-
 
             Font fnt = new Font("Arial", 30);
             Pen blackPen = new Pen(Color.Green, 3);
@@ -52,11 +36,11 @@ namespace Zap.Graphiz
             e.Graphics.DrawLine(blackPen, point3, point4); // draw line 2
             e.Graphics.DrawLine(blackPen, point5, point6); // draw line 3
             e.Graphics.DrawLine(blackPen, point7, point8); // draw line 4
-            e.Graphics.DrawString(("Score= " + score),
+            e.Graphics.DrawString(("Score= " + DS.Score),
                 fnt, System.Drawing.Brushes.Green, new Point(10, 0));
-            e.Graphics.DrawString(("Crashes Left= " + crashes_left),
+            e.Graphics.DrawString(("Crashes Left= " + DS.CrashesLeft),
                 fnt, System.Drawing.Brushes.Green, new Point(350, 0));
-            e.Graphics.DrawString(("Level= " + skilllevel),
+            e.Graphics.DrawString(("Level= " + DS.SkillLevel),
                 fnt, System.Drawing.Brushes.Green, new Point(840, 0));
    
         }

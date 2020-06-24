@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -9,9 +10,8 @@ namespace Zap.Graphiz
 {
     public class LevelSelect : Form1
     {
-       
 
-        public void clearnumline(object sender, PaintEventArgs e)
+        public void Clearnumline(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             
@@ -28,14 +28,12 @@ namespace Zap.Graphiz
             OnPaint(e);
         }
 
-        public void DrawLineLeftOrRight(object sender, PaintEventArgs e)
+        public void DrawLineLeftOrRight( object sender,PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             
-            Logic.LevelSelectLogic LSL = new Logic.LevelSelectLogic();
             //draw simple pica skill level
             Font fnt2 = new Font("Arial", 20);
-            Pen blackPen2 = new Pen(Color.Green, 3);
             string pickSkillLevel = "PICK A SKILL LEVEL:\n";
             g.DrawString((pickSkillLevel),
                     fnt2, System.Drawing.Brushes.Green, new Point(30, 30));
@@ -43,22 +41,16 @@ namespace Zap.Graphiz
             Font fnt4 = new Font("Arial", 20);
             Font fnt3 = new Font("Arial", 18);
             string numline = "1     2     3     4     5"; //full number line
-            numline = numline.Replace(LSL.CurrentSelectedPos.ToString(), " "); //replace num using
+            numline = numline.Replace(DS.LevelSelected.ToString(), " "); //replace num using
             //draw new except current
             g.DrawString(numline,
             fnt3, System.Drawing.Brushes.Green, new Point(50, 70));
             //draw current
-            e.Graphics.DrawString(LSL.LevelSelected.ToString(),
-            fnt4, System.Drawing.Brushes.Green, new Point(LSL.CurrentSelectedPos, 70));
+            g.DrawString(DS.LevelSelected.ToString(),
+            fnt4, System.Drawing.Brushes.Green, new Point(DS.CurrentSelectedPos, 70));
             OnPaint(e);
         }
 
-        public void LoadLevel()
-        {
-            pictureBox1.Paint += clearnumline;
-            pictureBox1.Paint += DrawLineLeftOrRight;
-            pictureBox1.Invalidate();
-            Dispose();
-        }
+
     }
 }

@@ -8,62 +8,8 @@ namespace Zap.Logic
 {
     public class PlayerLogic : Form1
     {
-        Graphiz.Player PGraph = new Graphiz.Player();
+        readonly Graphiz.Player PGraph = new Graphiz.Player();
 
-        private int space = 22;
-        private int movementx = 0;
-        private int movementy = 0;
-       
-        private List<int> Playery = new List<int>();
-        private List<int> Playerx = new List<int>();
-
-        public int Space
-        {
-            get
-            {
-                return space;
-            }
-        }
-
-        public int MovementX
-        {
-            get
-            {
-                return movementx;
-            }
-            set
-            {
-                movementx = value;
-            }
-        }
-
-        public int MovementY
-        {
-            get
-            {
-                return movementy;
-            }
-            set
-            {
-                movementy = value;
-            }
-        }
-        public List<int> GetPlayerX
-        {
-
-            get { return new List<int>(Playerx); }
-
-        }
-        public List<int> GetPlayerY
-        {
-            get { return new List<int>(Playery); }
-        }
-
-        public void ListClear()
-        {
-            Playerx.Clear();
-            Playery.Clear();
-        }
         public void GenericPlayerLogic(object sender, PaintEventArgs e)
         { 
             Random rnd = new Random();
@@ -76,7 +22,7 @@ namespace Zap.Logic
            
            
             
-            if (Playerx.Count == 0)
+            if (DS.PlayerY.Count == 0)
             {
                 for (int i = 0; i< 10; i++)
                 {
@@ -87,22 +33,22 @@ namespace Zap.Logic
                         pointy = rnd.Next(min, max);
                     }
                     Point point9 = new Point(pointx, pointy);
-                    Playerx.Add(point9.X);
-                    Playery.Add(point9.Y);
-                    PGraph.PlayerGeneric(point9, sender, e);
-                    pointx += space;
+                    DS.PlayerX.Add(point9.X);
+                    DS.PlayerY.Add(point9.Y);
+                    PGraph.PlayerGeneric(point9, e);
+                    pointx += DS.Space;
                 }
             }
             else
             { //----------------------------start debug here
 
-                if (movementx != 0 || movementy != 0)
+                if (DS.MovementX != 0 || DS.MovementY != 0)
                 {
                     int oldx = 0;
                     int oldy = 0;
-                    int temp_oldx = 0;
-                    int temp_oldy = 0;
-                    for (int i = 0; i<Playerx.Count; i++)
+                    int temp_oldx;
+                    int temp_oldy;
+                    for (int i = 0; i< DS.PlayerX.Count; i++)
                     {
 
                         //image you have a train, traincar 1's pos is 10,10. 
@@ -113,32 +59,30 @@ namespace Zap.Logic
 
                         if (i == 0) //train car 1
                         {
-                            oldx = Playerx[i];
-                            oldy = Playery[i];
-                            Playerx[i] += movementx;
-                            Playery[i] += movementy;
+                            oldx = DS.PlayerX[i];
+                            oldy = DS.PlayerY[i];
+                            DS.PlayerX[i] += DS.MovementX;
+                            DS.PlayerY[i] += DS.MovementY;
                         }
                         else
                         {
-                            temp_oldx = Playerx[i]; // save train 2's pos
-                            temp_oldy = Playery[i];
-                            Playerx[i] = oldx;
-                            Playery[i] = oldy;
+                            temp_oldx = DS.PlayerX[i]; // save train 2's pos
+                            temp_oldy = DS.PlayerY[i];
+                            DS.PlayerX[i] = oldx;
+                            DS.PlayerY[i] = oldy;
                             oldx = temp_oldx;
                             oldy = temp_oldy;
-                            temp_oldx = 0;
-                            temp_oldy = 0;
                         }
-                        Point Point9 = new Point(Playerx[i], Playery[i]);
-                        PGraph.PlayerGeneric(Point9, sender, e);
+                        Point Point9 = new Point(DS.PlayerX[i], DS.PlayerY[i]);
+                        PGraph.PlayerGeneric(Point9, e);
                     }
                 }
                 else
                 {
                     for (int i = 0; i< 10; i++)
                     {
-                        Point Point9 = new Point(Playerx[i], Playery[i]);
-                        PGraph.PlayerGeneric(Point9, sender, e);
+                        Point Point9 = new Point(DS.PlayerX[i], DS.PlayerY[i]);
+                        PGraph.PlayerGeneric(Point9, e);
                     }
                 }
             }

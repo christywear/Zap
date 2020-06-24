@@ -8,19 +8,15 @@ namespace Zap.Logic
 {
     public class InputReactor : Form1
     {
-        public void pictureBox1_KeyDown(object sender, KeyEventArgs e)
+        readonly LevelSelectLogic LSL = new LevelSelectLogic();
+        readonly Logic.GuiLogic GL = new GuiLogic();
+
+        public string PictureBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            PlayerLogic PL = new PlayerLogic();
-            LevelSelectLogic LSL = new LevelSelectLogic();
-            GuiLogic GL = new GuiLogic();
-            Graphiz.Gui GUI = new Graphiz.Gui();
-
-            bool itsPlayTime = false;
-            Keys lastkeypressed = Keys.None;
-
-            if (PL.GetPlayerX.Count != 0)
+            
+            if (DS.PlayerXCount != 0)
             {
-                itsPlayTime = true;
+                DS.ItsPlayTime = true;
             }
             switch (e.KeyCode)
             {
@@ -29,31 +25,31 @@ namespace Zap.Logic
                     //mainloop = false;
                     Application.Exit();
                     //thisway = 0;
+                    
                     break;
 
                 case Keys.A:
                     //
-                    if (!itsPlayTime)
+                    if (!DS.ItsPlayTime)
                     { 
                         LSL.InterateDrawOnLevelLeft();
-                        
+                        return "LS.GoLeft";
                     }
 
                     else
                     {
-                        if (PL.GetPlayerX[0] >= 50 && PL.GetPlayerX[0] != PL.GetPlayerX[1] + PL.Space)
+                        if (DS.PlayerX[0] >= 50 && DS.PlayerX[0] != DS.PlayerX[1] + DS.Space)
                         {
-                            PL.MovementX = 0;
-                            PL.MovementY = 0;
-                            PL.MovementX -= PL.Space;
-                            System.Threading.Thread.Sleep(800 / LSL.LevelSelected);
-                            lastkeypressed = Keys.A;
-                            pictureBox1.Invalidate();
-
+                            DS.MovementX = 0;
+                            DS.MovementY = 0;
+                            DS.MovementX -= DS.Space;
+                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
+                            return "Invalid";
                         }
-                        if (PL.GetPlayerX[0] < 50)
+                        if (DS.PlayerX[0] < 50)
                         {
                             GL.GenericLogicReset(); // respawn
+                            return "Invalid";
                         }
                     }
                 break;
@@ -61,85 +57,89 @@ namespace Zap.Logic
                     //pictureBox1.Paint += new PaintEventHandler(clearnumline);
                     //pictureBox1.Paint += new PaintEventHandler(DrawLinePointF);
                     //pictureBox1.Paint += new PaintEventHandler(DrawLineLeftOrRight);
-                    if (!itsPlayTime)
-                    { LSL.InterateDrawOnLevelRight(); }
+                    if (!DS.ItsPlayTime)
+                    {
+                        LSL.InterateDrawOnLevelRight();
+                        return "LS.GoRight";
+                    }
                     else
                     {
-                        if (PL.GetPlayerX[0] <= 920 && PL.GetPlayerX[0] != PL.GetPlayerX[1] - PL.Space)
+                        if (DS.PlayerX[0] <= 920 && DS.PlayerX[0] != DS.PlayerX[1] - DS.Space)
                         {
-                            PL.MovementX = 0;
-                            PL.MovementY = 0;
-                            PL.MovementX += PL.Space;
-                            lastkeypressed = Keys.D;
-                            System.Threading.Thread.Sleep(800 / LSL.LevelSelected);
-                            pictureBox1.Invalidate();
+                            DS.MovementX = 0;
+                            DS.MovementY = 0;
+                            DS.MovementX += DS.Space;
+                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
+                            
+                            return "Invalid";
                         }
-                        if (PL.GetPlayerX[0] > 920)
+                        if (DS.PlayerX[0] > 920)
                         {
                             GL.GenericLogicReset(); // respawn
+                            return "Invalid";
                         }
                     }
                 break;
             case Keys.W:
-                    if (!itsPlayTime) { }
+                    if (!DS.ItsPlayTime) { }
                     else
                     {
-                        if (lastkeypressed != Keys.W)
+                        if (DS.PlayerY[0] >= 90 && DS.PlayerY[0] != DS.PlayerY[1] + DS.Space)
                         {
-
+                            DS.MovementX = 0;
+                            DS.MovementY = 0;
+                            DS.MovementY -= DS.Space;
+                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
+                            
+                            return "Invalid";
                         }
-                        if (PL.GetPlayerY[0] >= 90 && PL.GetPlayerY[0] != PL.GetPlayerY[1] + PL.Space)
-                        {
-                            PL.MovementX = 0;
-                            PL.MovementY = 0;
-                            PL.MovementY -= PL.Space;
-                            lastkeypressed = Keys.W;
-                            System.Threading.Thread.Sleep(800 / LSL.LevelSelected);
-                            pictureBox1.Invalidate();
-                        }
-                        if (PL.GetPlayerY[0] < 90)
+                        if (DS.PlayerX[0] < 90)
                         {
                             GL.GenericLogicReset(); // respawn
+                            return "Invalid";
                         }
                     }
                 break;
             case Keys.S:
-                    if (!itsPlayTime) { }
+                    if (!DS.ItsPlayTime) { }
                     else
                     {
-                        if (PL.GetPlayerY[0] <= 690 && PL.GetPlayerY[0] != PL.GetPlayerY[1] - PL.Space)
+                        if (DS.PlayerY[0] <= 690 && DS.PlayerY[0] != DS.PlayerY[1] - DS.Space)
                         {
-                            PL.MovementX = 0;
-                            PL.MovementY = 0;
-                            PL.MovementX += PL.Space;
-                            lastkeypressed = Keys.S;
-                            System.Threading.Thread.Sleep(800 / LSL.LevelSelected);
-                            pictureBox1.Invalidate();
+                            DS.MovementX = 0;
+                            DS.MovementY = 0;
+                            DS.MovementX += DS.Space;
+                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
+                            
+                            return "Invalid";
                         }
-                        if (PL.GetPlayerX[0] > 690)
+                        if (DS.PlayerX[0] > 690)
                         {
                             GL.GenericLogicReset(); // respawn
+                            return "Invalid";
                         }
                     }
                 break;
             case Keys.Enter:
                     //playstart = true;
                     //skilllevel = d;
-                    if (!itsPlayTime)
+                    if (!DS.ItsPlayTime)
                     {
-                        itsPlayTime = true;
-                        if (LSL.Selected == false)
+                        DS.ItsPlayTime = true;
+                        if (DS.Selected == false)
                         {
-                            LSL.Selected = true;
-                            GUI.LoadPictureBoxGG();
+                            DS.Selected = true;
+                            
+                            return "GUI.LoadPicture";
                         }
                     }
                 //pictureBox1.Invalidate();
                 //lastkeypressed = Keys.Enter;
                 break;
-            }  
+            }
             
             e.Handled = true;
+            return "";
         }
     }
 }
