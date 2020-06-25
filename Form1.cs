@@ -16,14 +16,14 @@ namespace Zap
 {
     public partial class Form1 : Form
     {
+        private static bool playFieldStarted = false;
         private Data.DataStorage ds = new Data.DataStorage();
 
         public Form1()
         {
             
             InitializeComponent();
-            //Thread play = new Thread(new ThreadStart(GameStartLoader));
-            //play.Start();
+            
             
         }
 
@@ -32,8 +32,14 @@ namespace Zap
 
             Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
             pictureBox1.Paint += new PaintEventHandler(LS.DrawLineLeftOrRight);
+            LaunchStuffAsync();
 
+        }
 
+        private async Task LaunchStuffAsync()
+        {
+             await Task.Run(() => Playfield());
+            
         }
 
         public Data.DataStorage DS { get { return ds; } set { ds = value; } }
@@ -41,34 +47,49 @@ namespace Zap
         private void PictureBox1_KeyDown(object sender, KeyEventArgs e)
         {
             Logic.InputReactor IR = new Logic.InputReactor();
-            string drawthis = IR.PictureBox1_KeyDown(sender, e);
-            DrawThis(drawthis);
+            IR.PictureBox1_KeyDown(sender, e);
+
         }
 
-        private void DrawThis(string drawing)
+
+        private void Playfield()
         {
-           
-           
-            switch(drawing)
+            Graphiz.Gui GUI = new Graphiz.Gui();
+            Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
+            Graphiz.Player PlayDraw = new Graphiz.Player();
+            Logic.GuiLogic GL = new Logic.GuiLogic();
+            do
             {
-                case "LS.GoLeft":
-                case "LS.GoRight":
-                    Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
+                if (DS.Selected)
+                {
+                    
+                    pictureBox1.Paint += new PaintEventHandler(Clear);
+                    pictureBox1.Paint += new PaintEventHandler(GUI.PictureboxStuff);
+                    pictureBox1.Invalidate();
+                    Logic.PlayerLogic PL = new Logic.PlayerLogic();
+                    pictureBox1.Paint += new PaintEventHandler(PlayDraw.PlayerGeneric);
+                    pictureBox1.Invalidate();
+                    if (DS.Points[0].X < 9 || DS.Points[0].X > 968 || DS.Points[0].Y < 50 || DS.Points[0].Y > 740)
+                    {
+                        GL.GenericLogicReset(); // respawn
+                    }
+                }
+            
+                else
+                {
+                    pictureBox1.Paint += new PaintEventHandler(Clear);
                     pictureBox1.Paint += new PaintEventHandler(LS.Clearnumline);
                     pictureBox1.Paint += new PaintEventHandler(LS.DrawLineLeftOrRight);
                     pictureBox1.Invalidate();
-                    break;
-                /*case "GUI.LoadPicture":
-                    Graphiz.Gui GUI = new Graphiz.Gui();
-                    pictureBox1.Paint += new PaintEventHandler(GUI.PictureboxStuff);
-                    pictureBox1.Invalidate();
-                    break;*/
-                case "Invalid":
-                    pictureBox1.Invalidate();
-                    break;
-                default:
-                    break;
-            }
+                }
+                System.Threading.Thread.Sleep(800 / DS.LevelSelected);
+            } while (true);
+        }
+
+        private void Clear(object sender, PaintEventArgs e)
+        {
+            e.Graphics.Clear(Color.Black);
+            this.Invalidate();
         }
     }
 }

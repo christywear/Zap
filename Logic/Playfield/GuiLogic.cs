@@ -13,20 +13,26 @@ namespace Zap.Logic
         public void GenericLogicReset()
         {
             
-            if (DS.CrashesLeft >= 0)
+            if (DS.CrashesLeft > 0)
             {
                 DS.CrashesLeft--;
-                DS.PlayerX.Clear();
                 DS.MovementX = 0;
                 DS.MovementY = 0;
+                DS.PlayerX.Clear();
+                DS.PlayerY.Clear();
+                DS.Points.Clear();
+
             }
             else
             {
+                DS.ItsPlayTime = false;
+                DS.Selected = false;
                 DS.CrashesLeft = 5;
-                DS.PlayerY.Clear();
                 DS.MovementX = 0;
                 DS.MovementY = 0;
-                DS.Selected = false;
+                DS.PlayerX.Clear();
+                DS.PlayerY.Clear();
+                DS.Points.Clear();
                 
                 if (pictureBox1.Image != null)
                 {

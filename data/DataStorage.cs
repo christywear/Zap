@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Drawing;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Zap.Data
 {
     public class DataStorage
     {
-
+        #region form
+        
+        
+        #endregion
 
         #region LevelSelectLogic
-        private static int posMoveAmount = 51;
+        private static readonly int posMoveAmount = 51;
         private static int currentSelectedPos = 46;
         private static int levelSelected = 1;
         private static bool selected = false;
@@ -94,11 +98,14 @@ namespace Zap.Data
         #endregion
 
         #region PlayerLogic
-        private static int space = 22;
+        private static readonly int space = 22;
         private static int movementx = 0;
         private static int movementy = 0;
+        public static readonly Size rectangleSize = new Size(20, 20);
+        public static readonly SolidBrush pCircBrush = new SolidBrush(Color.Green);
+        private static List<Point> points = new List<Point>();
 
-        
+
         public int Space
         {
             get
@@ -131,8 +138,32 @@ namespace Zap.Data
             }
         }
 
- 
+        public Size RectangleSize
+        {
+            get
+            {
+                return rectangleSize;
+            }
+        }
 
+        public SolidBrush PCircBrush
+        {
+            get
+            {
+                return pCircBrush;
+            }
+        }
+
+        public List<Point> Points
+        {
+            get
+            {
+                return points;
+            }
+
+        }
+
+        
         private static List<int> playery = new List<int>();
         private static List<int> playerx = new List<int>();
 
@@ -145,8 +176,7 @@ namespace Zap.Data
             } 
         }
 
-        public int PlayerYCount { get { return playery.Count; }}
-
+       
         public List<int> PlayerX 
         { 
             get 
@@ -155,7 +185,7 @@ namespace Zap.Data
             } 
         }
             
-        public int PlayerXCount { get { return PlayerY.Count; } }
+        
 
           
       

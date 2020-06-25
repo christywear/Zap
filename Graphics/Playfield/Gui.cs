@@ -42,7 +42,13 @@ namespace Zap.Graphiz
                 fnt, System.Drawing.Brushes.Green, new Point(350, 0));
             e.Graphics.DrawString(("Level= " + DS.SkillLevel),
                 fnt, System.Drawing.Brushes.Green, new Point(840, 0));
-   
+            if (DS.Points.Count != 0)
+            {
+                e.Graphics.DrawString(("x is" + DS.Points[0].X),
+               fnt, System.Drawing.Brushes.Green, new Point(350, 400));
+                e.Graphics.DrawString(("y is" + DS.Points[0].Y),
+                   fnt, System.Drawing.Brushes.Green, new Point(600, 400));
+            }
         }
 
         public void LoadPictureBoxGG()

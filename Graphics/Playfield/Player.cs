@@ -9,14 +9,17 @@ namespace Zap.Graphiz
 {
     public class Player : Form1
     {
-        public void PlayerGeneric(Point point, PaintEventArgs e)
+        public void PlayerGeneric(object sender, PaintEventArgs e)
         {
-
-            Size rectangleSize = new Size(20, 20);
-            Rectangle rectangle = new Rectangle(point, rectangleSize);
-            SolidBrush me = new SolidBrush(Color.Green);
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            e.Graphics.FillEllipse(me, rectangle);
+            if (DS.Points.Count != 0)
+            { 
+                for (int i = 0; i < 10; i++)
+                {
+                    Rectangle rectangle = new Rectangle(DS.Points[i], DS.RectangleSize);
+                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                    e.Graphics.FillEllipse(DS.PCircBrush, rectangle);
+                }
+            }
         }
     }
 }

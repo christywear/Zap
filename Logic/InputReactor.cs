@@ -9,12 +9,12 @@ namespace Zap.Logic
     public class InputReactor : Form1
     {
         readonly LevelSelectLogic LSL = new LevelSelectLogic();
-        readonly Logic.GuiLogic GL = new GuiLogic();
+        
 
-        public string PictureBox1_KeyDown(object sender, KeyEventArgs e)
+        public void PictureBox1_KeyDown(object sender, KeyEventArgs e)
         {
             
-            if (DS.PlayerXCount != 0)
+            if (DS.PlayerX.Count != 0)
             {
                 DS.ItsPlayTime = true;
             }
@@ -31,25 +31,20 @@ namespace Zap.Logic
                 case Keys.A:
                     //
                     if (!DS.ItsPlayTime)
-                    { 
+                    {
                         LSL.InterateDrawOnLevelLeft();
-                        return "LS.GoLeft";
                     }
 
                     else
                     {
-                        if (DS.PlayerX[0] >= 50 && DS.PlayerX[0] != DS.PlayerX[1] + DS.Space)
+                        if (DS.PlayerX.Count == 0)
+                            break;
+                        if (DS.PlayerX[0] >= 0 && DS.PlayerX[0] != DS.PlayerX[1] + DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementX -= DS.Space;
-                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
-                            return "Invalid";
-                        }
-                        if (DS.PlayerX[0] < 50)
-                        {
-                            GL.GenericLogicReset(); // respawn
-                            return "Invalid";
+                            System.Threading.Thread.Sleep(51);
                         }
                     }
                 break;
@@ -60,23 +55,17 @@ namespace Zap.Logic
                     if (!DS.ItsPlayTime)
                     {
                         LSL.InterateDrawOnLevelRight();
-                        return "LS.GoRight";
                     }
                     else
                     {
-                        if (DS.PlayerX[0] <= 920 && DS.PlayerX[0] != DS.PlayerX[1] - DS.Space)
+                        if (DS.PlayerX.Count == 0)
+                            break;
+                        if (DS.PlayerX[0] <= 1000 && DS.PlayerX[0] != DS.PlayerX[1] - DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementX += DS.Space;
-                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
-                            
-                            return "Invalid";
-                        }
-                        if (DS.PlayerX[0] > 920)
-                        {
-                            GL.GenericLogicReset(); // respawn
-                            return "Invalid";
+                            System.Threading.Thread.Sleep(51);
                         }
                     }
                 break;
@@ -84,40 +73,32 @@ namespace Zap.Logic
                     if (!DS.ItsPlayTime) { }
                     else
                     {
-                        if (DS.PlayerY[0] >= 90 && DS.PlayerY[0] != DS.PlayerY[1] + DS.Space)
+                        if (DS.PlayerX.Count == 0)
+                            break;
+                        if (DS.PlayerY[0] >= 40 && DS.PlayerY[0] != DS.PlayerY[1] + DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementY -= DS.Space;
-                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
-                            
-                            return "Invalid";
+                            System.Threading.Thread.Sleep(51);
                         }
-                        if (DS.PlayerX[0] < 90)
-                        {
-                            GL.GenericLogicReset(); // respawn
-                            return "Invalid";
-                        }
+                       
                     }
                 break;
             case Keys.S:
                     if (!DS.ItsPlayTime) { }
                     else
                     {
-                        if (DS.PlayerY[0] <= 690 && DS.PlayerY[0] != DS.PlayerY[1] - DS.Space)
+                        if (DS.PlayerX.Count == 0)
+                            break;
+                        if (DS.PlayerY[0] <= 740 && DS.PlayerY[0] != DS.PlayerY[1] - DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
-                            DS.MovementX += DS.Space;
-                            System.Threading.Thread.Sleep(800 / DS.LevelSelected);
-                            
-                            return "Invalid";
+                            DS.MovementY += DS.Space;
+                            System.Threading.Thread.Sleep(51);
                         }
-                        if (DS.PlayerX[0] > 690)
-                        {
-                            GL.GenericLogicReset(); // respawn
-                            return "Invalid";
-                        }
+                       
                     }
                 break;
             case Keys.Enter:
@@ -129,8 +110,6 @@ namespace Zap.Logic
                         if (DS.Selected == false)
                         {
                             DS.Selected = true;
-                            
-                            return "GUI.LoadPicture";
                         }
                     }
                 //pictureBox1.Invalidate();
@@ -139,7 +118,6 @@ namespace Zap.Logic
             }
             
             e.Handled = true;
-            return "";
         }
     }
 }
