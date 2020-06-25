@@ -264,6 +264,8 @@ FakesAssemblies/
 @ghost
 
 #personal
+*.mp3
+*.wav
 *.mp4
 *.pdf
 *.zip
