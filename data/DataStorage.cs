@@ -9,8 +9,8 @@ namespace Zap.Data
     public class DataStorage
     {
         #region form
-        
-        
+        private static bool notdonethisyet = false;
+        public bool NotDoneThisYet { get { return notdonethisyet; } set { notdonethisyet = value; } }
         #endregion
 
         #region LevelSelectLogic

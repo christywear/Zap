@@ -26,6 +26,7 @@ namespace Zap.Logic
             else
             {
                 DS.ItsPlayTime = false;
+                DS.NotDoneThisYet = false;
                 DS.Selected = false;
                 DS.CrashesLeft = 5;
                 DS.MovementX = 0;

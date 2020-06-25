@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Media;
 using System.Text;
 using System.Windows.Forms;
-
+using Zap.Properties;
 
 namespace Zap.Logic
 {
@@ -102,15 +103,18 @@ namespace Zap.Logic
                     }
                 break;
             case Keys.Enter:
+                    SoundPlayer sndmusic = new SoundPlayer(Resources.flux_capacitor1);
                     //playstart = true;
                     //skilllevel = d;
                     if (!DS.ItsPlayTime)
                     {
                         DS.ItsPlayTime = true;
+                        sndmusic.PlayLooping();
                         if (DS.Selected == false)
                         {
                             DS.Selected = true;
                         }
+
                     }
                 //pictureBox1.Invalidate();
                 //lastkeypressed = Keys.Enter;

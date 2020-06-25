@@ -48,6 +48,10 @@ namespace Zap.Graphiz
             //draw current
             g.DrawString(DS.LevelSelected.ToString(),
             fnt4, System.Drawing.Brushes.Green, new Point(DS.CurrentSelectedPos, 70));
+            // draw basic info
+            g.DrawString("W,S to select level, enter to play. Escape to exit.\nOnce in game use w,s,a,d, to move snake around",
+            fnt4, System.Drawing.Brushes.Green, new Point(10, 200));
+
             OnPaint(e);
         }
 

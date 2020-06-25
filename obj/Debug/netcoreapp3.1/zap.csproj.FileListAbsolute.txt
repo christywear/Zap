@@ -13,3 +13,4 @@ D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Debug\netcoreapp3.1\zap.csproj.
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Debug\netcoreapp3.1\zap.dll
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Debug\netcoreapp3.1\zap.pdb
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Debug\netcoreapp3.1\zap.genruntimeconfig.cache
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Debug\netcoreapp3.1\Zap.Properties.Resources.resources
