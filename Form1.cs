@@ -123,16 +123,19 @@ namespace Zap
                     });
                     
                     Logic.PlayerLogic PL = new Logic.PlayerLogic();
+                    PL.GenericPlayerLogic();
                     pictureBox1.Paint += new PaintEventHandler(PlayDraw.PlayerGeneric);
                     Invoke((MethodInvoker)delegate
                     {
                         pictureBox1.Invalidate();
                     });
-                    if (DS.Points[0].X < 9 || DS.Points[0].X > 968 || DS.Points[0].Y < 50 || DS.Points[0].Y > 732)
+                    if (DS.Points.Count > 0)
                     {
-                        GL.GenericLogicReset(); // respawn
-                    }
-                    
+                        if (DS.Points[0].X < 9 || DS.Points[0].X > 968 || DS.Points[0].Y < 50 || DS.Points[0].Y > 732)
+                        {
+                            GL.GenericLogicReset(); // respawn
+                        }
+                    }                    
                     if (DS.Points.Count > 0 && Ahole.AppleSauce.Count > 0)
                     {
                         

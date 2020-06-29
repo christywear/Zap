@@ -10,7 +10,7 @@ namespace Zap.Logic
     {
         public PlayerLogic() 
         { 
-            GenericPlayerLogic(); 
+            //GenericPlayerLogic(); 
         }
         static Point pointtemp = new Point(0, 0);
         static Point pointtempSwap = new Point(0, 0);
