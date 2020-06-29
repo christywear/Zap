@@ -18,8 +18,6 @@ namespace Zap.Logic
                 DS.CrashesLeft--;
                 DS.MovementX = 0;
                 DS.MovementY = 0;
-                DS.PlayerX.Clear();
-                DS.PlayerY.Clear();
                 DS.Points.Clear();
 
             }
@@ -31,15 +29,9 @@ namespace Zap.Logic
                 DS.CrashesLeft = 5;
                 DS.MovementX = 0;
                 DS.MovementY = 0;
-                DS.PlayerX.Clear();
-                DS.PlayerY.Clear();
                 DS.Points.Clear();
                 
-                if (pictureBox1.Image != null)
-                {
-                    pictureBox1.Image.Dispose();
-                    pictureBox1.Image = null;
-                }
+                
                 
             }
         }

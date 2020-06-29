@@ -4,7 +4,9 @@ D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.runti
 D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.runtimeconfig.dev.json
 D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.dll
 D:\classxis\summerfun2020\games\Zap\zap2\zap\bin\Release\netcoreapp3.1\Zap.pdb
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.csprojAssemblyReference.cache
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.Form1.resources
+D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.Properties.Resources.resources
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.csproj.GenerateResource.cache
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.AssemblyInfoInputs.cache
 D:\classxis\summerfun2020\games\Zap\zap2\zap\obj\Release\netcoreapp3.1\Zap.AssemblyInfo.cs

@@ -36,7 +36,7 @@ namespace Zap.Graphiz
             e.Graphics.DrawLine(blackPen, point3, point4); // draw line 2
             e.Graphics.DrawLine(blackPen, point5, point6); // draw line 3
             e.Graphics.DrawLine(blackPen, point7, point8); // draw line 4
-            e.Graphics.DrawString(("Score= " + DS.Score),
+            e.Graphics.DrawString(("Score= " + DS.Score()),
                 fnt, System.Drawing.Brushes.Green, new Point(10, 0));
             e.Graphics.DrawString(("Crashes Left= " + DS.CrashesLeft),
                 fnt, System.Drawing.Brushes.Green, new Point(350, 0));

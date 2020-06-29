@@ -13,7 +13,11 @@ namespace Zap.Graphiz
 
         public void Clearnumline(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            if (DS.Selected)
+            {
+                return;
+            }
+                Graphics g = e.Graphics;
             
             g.Clear(Color.Black);
             Font fnt4 = new Font("Arial", 20);
@@ -30,6 +34,10 @@ namespace Zap.Graphiz
 
         public void DrawLineLeftOrRight( object sender,PaintEventArgs e)
         {
+            if (DS.Selected)
+            {
+                return;
+            }
             Graphics g = e.Graphics;
             
             //draw simple pica skill level

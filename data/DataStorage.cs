@@ -68,6 +68,14 @@ namespace Zap.Data
         private static int crashes_left = 5;
         private static int skilllevel = 0;
         private static int score = 0;
+        private static int applesEaten = 0;
+        private static int applesWorth = 6;
+
+        public int ApplesEaten
+        {
+            get { return applesEaten; }
+            set { applesEaten = value; }
+        }
 
         public int CrashesLeft
         {
@@ -75,10 +83,10 @@ namespace Zap.Data
             set { crashes_left = value; }
         }
 
-        public int Score
+        public int Score()
         {
-            get { return score; }
-            set { score = value; }
+            score = (applesWorth * applesEaten) + applesEaten;
+            return score;
         }
 
         public int SkillLevel
@@ -160,35 +168,8 @@ namespace Zap.Data
             {
                 return points;
             }
-
-        }
-
-        
-        private static List<int> playery = new List<int>();
-        private static List<int> playerx = new List<int>();
-
-
-        public List<int> PlayerY 
-        { 
-            get 
-            {
-                return playery;
-            } 
-        }
-
-       
-        public List<int> PlayerX 
-        { 
-            get 
-            {
-                return playerx; 
-            } 
-        }
-            
-        
-
           
-      
+        }
 
         #endregion
 

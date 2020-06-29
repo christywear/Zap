@@ -15,7 +15,7 @@ namespace Zap.Logic
         public void PictureBox1_KeyDown(object sender, KeyEventArgs e)
         {
             
-            if (DS.PlayerX.Count != 0)
+            if (DS.Points.Count != 0)
             {
                 DS.ItsPlayTime = true;
             }
@@ -38,14 +38,14 @@ namespace Zap.Logic
 
                     else
                     {
-                        if (DS.PlayerX.Count == 0)
+                        if (DS.Points.Count == 0)
                             break;
-                        if (DS.PlayerX[0] >= 0 && DS.PlayerX[0] != DS.PlayerX[1] + DS.Space)
+                        if (DS.Points[0].X >= 0 && DS.Points[0].X != DS.Points[1].X + DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementX -= DS.Space;
-                            System.Threading.Thread.Sleep(51);
+                           // System.Threading.Thread.Sleep(51);
                         }
                     }
                 break;
@@ -59,14 +59,14 @@ namespace Zap.Logic
                     }
                     else
                     {
-                        if (DS.PlayerX.Count == 0)
+                        if (DS.Points.Count == 0)
                             break;
-                        if (DS.PlayerX[0] <= 1000 && DS.PlayerX[0] != DS.PlayerX[1] - DS.Space)
+                        if (DS.Points[0].X <= 1000 && DS.Points[0].X != DS.Points[1].X - DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementX += DS.Space;
-                            System.Threading.Thread.Sleep(51);
+                           // System.Threading.Thread.Sleep(51);
                         }
                     }
                 break;
@@ -74,14 +74,14 @@ namespace Zap.Logic
                     if (!DS.ItsPlayTime) { }
                     else
                     {
-                        if (DS.PlayerX.Count == 0)
+                        if (DS.Points.Count == 0)
                             break;
-                        if (DS.PlayerY[0] >= 40 && DS.PlayerY[0] != DS.PlayerY[1] + DS.Space)
+                        if (DS.Points[0].Y >= 40 && DS.Points[0].Y != DS.Points[1].Y + DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementY -= DS.Space;
-                            System.Threading.Thread.Sleep(51);
+                          //  System.Threading.Thread.Sleep(51);
                         }
                        
                     }
@@ -90,14 +90,14 @@ namespace Zap.Logic
                     if (!DS.ItsPlayTime) { }
                     else
                     {
-                        if (DS.PlayerX.Count == 0)
+                        if (DS.Points.Count == 0)
                             break;
-                        if (DS.PlayerY[0] <= 740 && DS.PlayerY[0] != DS.PlayerY[1] - DS.Space)
+                        if (DS.Points[0].Y <= 740 && DS.Points[0].Y != DS.Points[1].Y - DS.Space)
                         {
                             DS.MovementX = 0;
                             DS.MovementY = 0;
                             DS.MovementY += DS.Space;
-                            System.Threading.Thread.Sleep(51);
+                            //System.Threading.Thread.Sleep(51);
                         }
                        
                     }

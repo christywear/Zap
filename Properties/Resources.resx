@@ -127,9 +127,6 @@
   <data name="clickRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\sound\clickRight.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="flux_capacitor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\sound\flux_capacitor.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="flux_capacitor1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\sound\flux_capacitor.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

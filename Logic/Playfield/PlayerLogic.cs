@@ -14,6 +14,36 @@ namespace Zap.Logic
         }
         static Point pointtemp = new Point(0, 0);
         static Point pointtempSwap = new Point(0, 0);
+        private static int numberOfPoints = 10;
+        private static bool hasCollided = false;
+        private readonly string name = "Player";
+        public new string Name { get { return name; } }
+
+        public int NumberOfPoints
+        {
+            get { return numberOfPoints; }
+            set { numberOfPoints = value; }
+        }
+
+        public bool HasCollided
+        {
+            get { return hasCollided; }
+            set { hasCollided = value; }
+        }
+
+        public void Collider(Apples other) // until I make a new obj to inheret from
+        {
+            if (HasCollided)
+            {
+                if (other.Name == "Apple") 
+                {
+                    NumberOfPoints += 2;
+                    DS.ApplesEaten++;
+                    HasCollided = false;
+                }
+            }
+        }
+
         public void GenericPlayerLogic()
         { 
             Random rnd = new Random();
@@ -23,9 +53,9 @@ namespace Zap.Logic
             int pointx = 0;
             int pointy = 0;
 
-            if (DS.PlayerY.Count == 0)
+            if (DS.Points.Count == 0)
             {
-                for (int i = 0; i< 10; i++)
+                for (int i = 0; i< NumberOfPoints; i++)
                 {
 
                     if (i == 0)
@@ -35,9 +65,6 @@ namespace Zap.Logic
                     }
                     Point point9 = new Point(pointx, pointy);
                     DS.Points.Add(point9);
-                    DS.PlayerX.Add(point9.X);
-                    DS.PlayerY.Add(point9.Y);
-                    
                     pointx += DS.Space;
                 }
             }
@@ -46,11 +73,8 @@ namespace Zap.Logic
 
                 if (DS.MovementX != 0 || DS.MovementY != 0)
                 {
-                    int oldx = 0;
-                    int oldy = 0;
-                    int temp_oldx;
-                    int temp_oldy;
-                    for (int i = 0; i < DS.PlayerX.Count; i++)
+                   
+                    for (int i = 0; i < NumberOfPoints; i++)
                     {
 
                         //image you have a train, traincar 1's pos is 10,10. 
@@ -61,10 +85,7 @@ namespace Zap.Logic
                        
                         if (i == 0) //train car 1
                         {
-                            oldx = DS.PlayerX[i];
-                            oldy = DS.PlayerY[i];
-                            DS.PlayerX[i] += DS.MovementX;
-                            DS.PlayerY[i] += DS.MovementY;
+                            
                             pointtemp = DS.Points[i]; // store value of point
                             pointtempSwap = DS.Points[i]; // store value of point in swap.
                             pointtemp.X += DS.MovementX; // iterate as needed
@@ -73,13 +94,6 @@ namespace Zap.Logic
                         }
                         else
                         {
-                            temp_oldx = DS.PlayerX[i]; // save train 2's pos
-                            temp_oldy = DS.PlayerY[i];
-                            DS.PlayerX[i] = oldx;
-                            DS.PlayerY[i] = oldy;
-                            oldx = temp_oldx;
-                            oldy = temp_oldy;
-                            
                             pointtemp = DS.Points[i]; // store cur val in temp // 6,2,3,4,5 swap 1, temp 2
                             DS.Points[i] = pointtempSwap; // store swap into cur pos // 6,1,3,4,5 swap 1, temp 2
                             pointtempSwap = pointtemp; // store current temp into swap for next go around.

@@ -15,9 +15,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\classxis\\summerfun2020\\games\\Zap\\zap2\\zap\\zap.csproj",
-      "projectName": "zap",
-      "projectPath": "D:\\classxis\\summerfun2020\\games\\Zap\\zap2\\zap\\zap.csproj",
+      "projectUniqueName": "D:\\classxis\\summerfun2020\\games\\Zap\\zap2\\zap\\Zap.csproj",
+      "projectName": "Zap",
+      "projectPath": "D:\\classxis\\summerfun2020\\games\\Zap\\zap2\\zap\\Zap.csproj",
       "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
       "outputPath": "D:\\classxis\\summerfun2020\\games\\Zap\\zap2\\zap\\obj\\",
       "projectStyle": "PackageReference",
