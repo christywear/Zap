@@ -69,7 +69,7 @@ namespace Zap.Data
         private static int skilllevel = 0;
         private static int score = 0;
         private static int applesEaten = 0;
-        private static int applesWorth = 6;
+        private static readonly int applesWorth = 6;
 
         public int ApplesEaten
         {
@@ -109,9 +109,9 @@ namespace Zap.Data
         private static readonly int space = 22;
         private static int movementx = 0;
         private static int movementy = 0;
-        public static readonly Size rectangleSize = new Size(20, 20);
-        public static readonly SolidBrush pCircBrush = new SolidBrush(Color.Green);
-        private static List<Point> points = new List<Point>();
+        private static readonly Size rectangleSize = new Size(20, 20);
+        private static readonly SolidBrush pCircBrush = new SolidBrush(Color.Green);
+        private static readonly List<Point> points = new List<Point>();
 
 
         public int Space

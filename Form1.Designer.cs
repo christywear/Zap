@@ -61,7 +61,7 @@ namespace Zap
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PictureBox1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
+            //this.ResumeLayout(false);
             this.PerformLayout();
 
         }

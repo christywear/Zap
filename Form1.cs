@@ -27,24 +27,26 @@ namespace Zap
             
             InitializeComponent();
             
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
             //Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
             //pictureBox1.Paint += new PaintEventHandler(LS.DrawLineLeftOrRight);
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            LaunchStuffAsync();
+            LaunchStuff();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
             
         }
-        private async Task LaunchStuffAsync()
+        private void LaunchStuff()
         {
-           await Task.Run(() => Playfield());
-            
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Task.Run(() => Playfield());
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+           
         }
 
         public Data.DataStorage DS { get { return ds; } set { ds = value; } }
@@ -52,39 +54,41 @@ namespace Zap
 
         public void Makeapples()
         {
-            Apples apple = new Apples();
+            
+            Apples Ambrosia = new Apples();
             var bmp = new Bitmap(Resources.apple);
-            bmp = apple.ResizeImage(bmp, 20, 20);
+            bmp = Ambrosia.ResizeImage(bmp, 20, 20);
             bmp.MakeTransparent(bmp.GetPixel(0, 0));
             
             
-            for (int i = 0; i < apple.NumberOfApples; i++)
+            for (int i = 0; i < Ambrosia.NumberOfApples; i++)
             {
-                apple.Erp.Add(bmp);
+                Ambrosia.Erp.Add(bmp);
             }
             
                 Random rnd = new Random();
-            foreach (Image _ in apple.Erp)
+            foreach (Image _ in Ambrosia.Erp)
             {
                 Point pointyapplesauce = new Point(rnd.Next(20, 980), rnd.Next(50, 700));
-                apple.AppleSauce.Add(pointyapplesauce);
+                Ambrosia.AppleSauce.Add(pointyapplesauce);
 
             }
             
             int iCtr = 0;
-            foreach (Image i in apple.Erp)
+            foreach (Image i in Ambrosia.Erp)
             {
                 PictureBox eachPictureBox = new PictureBox
                 {
                     BackColor = System.Drawing.Color.Transparent,
                     Parent = pictureBox1,
                     Size = new Size(20, 20),
-                    Location = apple.AppleSauce[iCtr],
+                    Location = Ambrosia.AppleSauce[iCtr],
                     Image = i
                 };
                 iCtr++;
             }
             pictureBox1.Invalidate();
+            //CollisionController();
         }
 
         private void PictureBox1_KeyDown(object sender, KeyEventArgs e)
@@ -96,16 +100,18 @@ namespace Zap
 
         private void Playfield()
         {
+            
             Graphiz.Gui GUI = new Graphiz.Gui();
             Graphiz.LevelSelect LS = new Graphiz.LevelSelect();
             Graphiz.Player PlayDraw = new Graphiz.Player();
             Logic.GuiLogic GL = new Logic.GuiLogic();
-            Apples Ahole = new Apples();
+            
 
             do
             {
                 if (DS.Selected)
                 {
+                    
                     if (!DS.NotDoneThisYet)
                     {
                         DS.NotDoneThisYet = true;
@@ -121,7 +127,7 @@ namespace Zap
                     {
                         pictureBox1.Invalidate();
                     });
-                    
+
                     Logic.PlayerLogic PL = new Logic.PlayerLogic();
                     PL.GenericPlayerLogic();
                     pictureBox1.Paint += new PaintEventHandler(PlayDraw.PlayerGeneric);
@@ -129,31 +135,19 @@ namespace Zap
                     {
                         pictureBox1.Invalidate();
                     });
+
+                    
                     if (DS.Points.Count > 0)
                     {
                         if (DS.Points[0].X < 9 || DS.Points[0].X > 968 || DS.Points[0].Y < 50 || DS.Points[0].Y > 732)
                         {
                             GL.GenericLogicReset(); // respawn
                         }
-                    }                    
-                    if (DS.Points.Count > 0 && Ahole.AppleSauce.Count > 0)
-                    {
-                        
-                        if (Ahole.AppleSauce.Contains(ds.Points[0]))
-                        {
-                            Ahole.HasCollided = true;
-                            PL.HasCollided = true;
-                            Ahole.Collider(PL);
-                            PL.Collider(Ahole);
-                            this.Invoke((MethodInvoker)delegate
-                            {
-                                this.pictureBox1.Invalidate();
-                            });
-                        
-                        }
+                       
                     }
+
                 }
-            
+
                 else
                 {
                     pictureBox1.Paint += new PaintEventHandler(Clear);
@@ -163,8 +157,48 @@ namespace Zap
                     {
                     pictureBox1.Invalidate();
                     });
+                    System.Threading.Thread.Sleep(800 / DS.LevelSelected);
                 }
-                System.Threading.Thread.Sleep(800 / DS.LevelSelected);
+            } while (true);
+        }
+
+        public void CollisionController()
+        {
+            
+            do
+            {
+                if (DS.Selected)
+                { 
+                    
+                    Apples apple = new Apples();
+                    Logic.PlayerLogic PL = new Logic.PlayerLogic();
+                   
+                    if (DS.Points.Count > 0 && apple.AppleSauce.Count > 0)
+                    {
+                        Point playerpos = new Point(DS.Points[0].X, DS.Points[0].Y);
+                        int xmax = 22;
+                        int xmin = -22;
+                        int ymax = 22;
+                        int ymin = -22;
+                        foreach (Point p in apple.AppleSauce)
+                        {
+                            if (p == playerpos || (playerpos.X + xmin > p.X && playerpos.X + xmax < p.X) && (playerpos.Y + ymin > p.Y && playerpos.Y + ymax < p.Y))
+                            {
+
+                                apple.HasCollided = true;
+                                PL.HasCollided = true;
+                                apple.Collider(PL, playerpos);
+                                PL.Collider(apple, playerpos);
+                                Invoke((MethodInvoker)delegate
+                                {
+                                    pictureBox1.Invalidate();
+                                });
+
+
+                            }
+                        }
+                    }
+                }
             } while (true);
         }
 

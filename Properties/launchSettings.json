@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Zap": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

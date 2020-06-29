@@ -16,8 +16,8 @@ namespace Zap.Logic
         static Point pointtempSwap = new Point(0, 0);
         private static int numberOfPoints = 10;
         private static bool hasCollided = false;
-        private readonly string name = "Player";
-        public new string Name { get { return name; } }
+        //private readonly string nameOfThisObj = "Player";
+       // public string NameOfThisObj { get { return nameOfThisObj; } }
 
         public int NumberOfPoints
         {
@@ -31,16 +31,16 @@ namespace Zap.Logic
             set { hasCollided = value; }
         }
 
-        public void Collider(Apples other) // until I make a new obj to inheret from
+        public void Collider(Apples other, Point playerpos) // until I make a new obj to inheret from
         {
             if (HasCollided)
             {
-                if (other.Name == "Apple") 
-                {
+                //if (other.NameOfThisObj == "Apple") 
+                //{
                     NumberOfPoints += 2;
                     DS.ApplesEaten++;
                     HasCollided = false;
-                }
+                //}
             }
         }
 
@@ -55,7 +55,8 @@ namespace Zap.Logic
 
             if (DS.Points.Count == 0)
             {
-                for (int i = 0; i< NumberOfPoints; i++)
+                int tempDebugNumPoints = NumberOfPoints;
+                for (int i = 0; i< tempDebugNumPoints; i++)
                 {
 
                     if (i == 0)
@@ -73,8 +74,8 @@ namespace Zap.Logic
 
                 if (DS.MovementX != 0 || DS.MovementY != 0)
                 {
-                   
-                    for (int i = 0; i < NumberOfPoints; i++)
+                    int debugTempStorePoints = NumberOfPoints;
+                    for (int i = 0; i < debugTempStorePoints; i++)
                     {
 
                         //image you have a train, traincar 1's pos is 10,10. 
